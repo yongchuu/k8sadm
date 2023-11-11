@@ -31,12 +31,12 @@ podTemplate(
 		try {
 			stage("Build Microservice image") {
 				container("docker") {
-					docker.withRegistry("${dockerRegistry}", "${credential_registry}") {
-						sh "docker build -f ./deployment/Dockerfile -t ${image}:${tag} ."
-						sh "docker push ${image}:${tag}"
-						sh "docker tag ${image}:${tag} ${image}:latest"
-						sh "docker push ${image}:latest"
-					}
+// 					docker.withRegistry("${dockerRegistry}", "${credential_registry}") {
+// 						sh "docker build -f ./deployment/Dockerfile -t ${image}:${tag} ."
+// 						sh "docker push ${image}:${tag}"
+// 						sh "docker tag ${image}:${tag} ${image}:latest"
+// 						sh "docker push ${image}:latest"
+// 					}
 				}
 			}
 			stage( "Clean Up Existing Deployments" ) {
