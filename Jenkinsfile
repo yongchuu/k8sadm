@@ -41,7 +41,7 @@ podTemplate(
 			}
 			stage( "Clean Up Existing Deployments" ) {
 				container("kubectl") {
-					sh "kubectl delete deployments -n ${namespace} --selector=${selector_key}=${selector_val}"
+// 					sh "kubectl delete deployments -n ${namespace} --selector=${selector_key}=${selector_val}"
 				}
 			}
 
