@@ -1,4 +1,4 @@
-def label = "k8sadm-${UUID.randomUUID().toString()}"
+def label = "k8sadm-${UUID.randomUUID().toString().replaceAll("-", "").substring(0, 8)}"
 
 
 podTemplate(
@@ -59,7 +59,7 @@ podTemplate(
 // 			}
 
 		} catch(e) {
-			currentBuild.result = "SUCCESS"
+			currentBuild.result = "FAILED"
 		}
 	}
 }
