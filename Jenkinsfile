@@ -1,10 +1,5 @@
 def label = "k8sadm-${UUID.randomUUID().toString().replaceAll('-', '')}".toLowerCase()
 
-@NonCPS
-def toProperties(String s){
-  s.readLines().collect{it.split('=')}.findAll{it.size()==2}.collectEntries()
-}
-
 podTemplate(
 	label: label,
 	containers: [
@@ -22,19 +17,16 @@ podTemplate(
 		    git branch: 'main', url: 'https://github.com/yongchuu/k8sadm.git'
         }
 
-		//-- 환경변수 파일 읽어서 변수값 셋팅
-		def props = readFile   file:"deployment/pipeline.properties"
-		props = toProperties(props)
-		def tag = props["version"]
-		def dockerRegistry = props["dockerRegistry"]
-		def credential_registry=props["credential_registry"]
-		def image = props["image"]
-		def deployment = props["deployment"]
-		def service = props["service"]
+		def tag = "0.1.1"
+		def dockerRegistry = "https://registry.hub.docker.com/"
+		def credential_registry = "docker-hub"
+		def image = "dongjoonju/k8sadm"
+		def deployment = "deployment/deploy.yaml"
+		def service = "deployment/svc.yaml"
 		//def ingress = props["ingress"]
-		def selector_key = props["selector_key"]
-		def selector_val = props["selector_val"]
-		def namespace = props["namespace"]
+		def selector_key = "app"
+		def selector_val = "k8sadm"
+		def namespace = "k8sadm"
 
 		try {
 			stage("Build Microservice image") {
