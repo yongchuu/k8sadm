@@ -1,4 +1,4 @@
-def label = "k8sadm-${UUID.randomUUID().toString().replaceAll("-", "").substring(0, 8)}"
+def label = "k8sadm"
 
 
 podTemplate(
