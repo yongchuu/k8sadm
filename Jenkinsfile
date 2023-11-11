@@ -1,4 +1,4 @@
-def label = "hellonode-${UUID.randomUUID().toString()}"
+def label = "k8sadm-${UUID.randomUUID().toString()}"
 
 
 podTemplate(
