@@ -1,10 +1,10 @@
-def label = "k8sadm"
+def label = "k8sadm-${UUID.randomUUID().toString().replaceAll('-', '')}"
 
 
 podTemplate(
 	label: label,
 	containers: [
-// 		containerTemplate(name: "docker", image: "docker:latest", ttyEnabled: true, command: "cat"),
+		containerTemplate(name: "docker", image: "docker:latest", ttyEnabled: true, command: "cat"),
 		containerTemplate(name: "kubectl", image: "bitnami/kubectl", command: "cat", ttyEnabled: true)
 	],
 	//volume mount
@@ -32,16 +32,16 @@ podTemplate(
 		def namespace = props["namespace"]
 
 		try {
-// 			stage("Build Microservice image") {
-// 				container("docker") {
-// 					docker.withRegistry("${dockerRegistry}", "${credential_registry}") {
-// 						sh "docker build -f ./deployment/Dockerfile -t ${image}:${tag} ."
-// 						sh "docker push ${image}:${tag}"
-// 						sh "docker tag ${image}:${tag} ${image}:latest"
-// 						sh "docker push ${image}:latest"
-// 					}
-// 				}
-// 			}
+			stage("Build Microservice image") {
+				container("docker") {
+					docker.withRegistry("${dockerRegistry}", "${credential_registry}") {
+						sh "docker build -f ./deployment/Dockerfile -t ${image}:${tag} ."
+						sh "docker push ${image}:${tag}"
+						sh "docker tag ${image}:${tag} ${image}:latest"
+						sh "docker push ${image}:latest"
+					}
+				}
+			}
 			stage( "Clean Up Existing Deployments" ) {
 				container("kubectl") {
 					sh "kubectl delete deployments -n ${namespace} --selector=${selector_key}=${selector_val}"
