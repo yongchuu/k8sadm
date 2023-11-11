@@ -18,7 +18,7 @@ podTemplate(
         }
 
 		def tag = "0.1.1"
-		def dockerRegistry = "https://registry.hub.docker.com/"
+		def dockerRegistry = ""
 		def credential_registry = "docker-hub"
 		def image = "dongjoonju/k8sadm"
 		def deployment = "deployment/deploy.yaml"
@@ -56,6 +56,7 @@ podTemplate(
 
 		} catch(e) {
 			currentBuild.result = "FAILED"
+			echo e
 		}
 	}
 }
