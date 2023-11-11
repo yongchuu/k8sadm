@@ -56,7 +56,7 @@ podTemplate(
 
 		} catch(e) {
 			currentBuild.result = "FAILED"
-			echo ${e}
+			echo "$e"
 		}
 	}
 }
