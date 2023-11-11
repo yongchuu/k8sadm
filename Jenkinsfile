@@ -1,5 +1,9 @@
 def label = "k8sadm-${UUID.randomUUID().toString().replaceAll('-', '')}".toLowerCase()
 
+@NonCPS
+def toProperties(String s){
+  s.readLines().collect{it.split('=')}.findAll{it.size()==2}.collectEntries()
+}
 
 podTemplate(
 	label: label,
@@ -19,7 +23,8 @@ podTemplate(
         }
 
 		//-- 환경변수 파일 읽어서 변수값 셋팅
-		def props = readProperties  file:"deployment/pipeline.properties"
+		def props = readFile   file:"deployment/pipeline.properties"
+		props = toProperties(props)
 		def tag = props["version"]
 		def dockerRegistry = props["dockerRegistry"]
 		def credential_registry=props["credential_registry"]
