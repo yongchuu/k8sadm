@@ -41,7 +41,7 @@ podTemplate(
 			}
 
 			stage( 'List pods' ) {
-                withKubeConfig([credentialsId: 'kubeconfig']) {
+                withKubeConfig([credentialsId: '59349bfb-b7e7-4a0b-9461-7d48a799fc29']) {
                     sh 'curl -LO "https://storage.googleapis.com/kubernetes-release/release/v1.20.5/bin/linux/amd64/kubectl"'
                     sh 'chmod u+x ./kubectl'
                     sh './kubectl get pods'
