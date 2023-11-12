@@ -37,6 +37,7 @@ podTemplate(
 // 						sh "docker push ${image}:latest"
 // 					}
 				}
+				sh "sleep 11"
 			}
 
 			stage( "Clean Up Existing Deployments" ) {
