@@ -4,7 +4,6 @@ podTemplate(
 	label: label,
 	containers: [
 		containerTemplate(name: "docker", image: "docker:latest", ttyEnabled: true, command: "cat"),
-		containerTemplate(name: "kubectl", image: "bitnami/kubectl", command: "cat", ttyEnabled: true)
 	],
 	//volume mount
 	volumes: [

@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: k8sadm
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: k8sadm
   ports:
